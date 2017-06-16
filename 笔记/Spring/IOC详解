@@ -1,0 +1,54 @@
+Spring IOC
+简单来讲就是依赖注入
+有两种方式注入
+  1，通过配置文件的方式注入
+  2，通过注解方式注入
+目的：
+  对象和变量之间解耦，减少初始化的相互依赖。以往的对象在实例化后，调用其成员变量的方法或者属性需要将其进行初始化，而初始化的方式一般都是new的。
+  而spring现在的方式则是通过class反射生成，生成的对象均为Spring工厂完成，无需业务层进行关心
+1，配置文件注入
+  <?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+http://www.springframework.org/schema/beans/spring-beans.xsd">  
+  
+  
+    <!-- Learn 01 Bean的命名 -->  
+    <!--scope:  
+        singleton 在每个Spring IoC容器中一个bean定义对应一个对象实例。 prototype 一个bean定义对应多个对象实例。   
+        request 在一次HTTP请求中，一个bean定义对应一个实例；即每次HTTP请求将会有各自的bean实例，它们依据某个bean定义创建而成。该作用域仅在基于web的Spring   
+        ApplicationContext情形下有效。 session 在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring   
+        ApplicationContext情形下有效。 -->  
+    <bean id="spearker01" class="com.mahaochen.spring.learn01.Speaker"  
+        scope="singleton" />  
+</beans>  
+
+Scope	Description
+singleton
+(Default) Scopes a single bean definition to a single object instance per Spring IoC container.
+prototype
+Scopes a single bean definition to any number of object instances.
+request
+Scopes a single bean definition to the lifecycle of a single HTTP request; that is, each HTTP request has its own instance of a bean created off the back of a single bean definition. Only valid in the context of a web-aware Spring ApplicationContext.
+session
+Scopes a single bean definition to the lifecycle of an HTTP Session. Only valid in the context of a web-aware Spring ApplicationContext.
+global session
+Scopes a single bean definition to the lifecycle of a global HTTP Session. Typically only valid when used in a portlet context. Only valid in the context of a web-aware Spring ApplicationContext.
+application
+Scopes a single bean definition to the lifecycle of a ServletContext. Only valid in the context of a web-aware Spring ApplicationContext
+ 
+对应中文参照
+spring Framework支持五种作用域（其中有三种只能用在基于web的SpringApplicationContext）。
+singleton
+在每个Spring IoC容器中一个bean定义对应一个对象实例。
+prototype
+一个bean定义对应多个对象实例。
+request
+在一次HTTP请求中，一个bean定义对应一个实例；即每次HTTP请求将会有各自的bean实例，它们依据某个bean定义创建而成。该作用域仅在基于web的Spring ApplicationContext情形下有效。
+session
+在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。
+global session
+在一个全局的HTTP Session中，一个bean定义对应一个实例。典型情况下，仅在使用portlet context的时候有效。该作用域仅在基于web的Spring ApplicationContext情形下有效。
+
+ 
