@@ -50,7 +50,16 @@ session
 在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。
 global session
 在一个全局的HTTP Session中，一个bean定义对应一个实例。典型情况下，仅在使用portlet context的时候有效。该作用域仅在基于web的Spring ApplicationContext情形下有效。
-
-
-
+ 
+通过注解方式进行IOC
+  <!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
+	<context:component-scan base-package="com" />
+  <!-- 定义Job -->
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />
+  
+  @Component
+  public class PLMServiceTaskScheduler {
+	
+	@Resource(name="schedulerFactoryBean")
+	private Scheduler scheduler;
  
